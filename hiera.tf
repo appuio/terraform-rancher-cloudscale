@@ -1,5 +1,5 @@
 module "hiera" {
-  source = "./modules/hiera"
+  source = "git::https://github.com/appuio/terraform-modules.git//modules/lb-vshn-hiera?ref=skeleton-and-lb"
 
   router_ip_addresses      = module.worker.ip_addresses[*]
   node_name_suffix         = local.node_name_suffix
