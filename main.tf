@@ -1,27 +1,5 @@
 locals {
   node_name_suffix = "${var.cluster_id}.${var.base_domain}"
-
-  # Allow sshd access only from loadbalancers
-  node_additional_user_data = {
-    "write_files" = [
-      {
-        path       = "/etc/hosts.allow"
-        "encoding" = "b64"
-        "owner"    = "root:root"
-        "permissions" : "0644"
-
-        "content" = base64encode(format("sshd: %s\n", join(",", module.lb.private_ipv4_addresses)))
-      },
-      {
-        path       = "/etc/hosts.deny"
-        "encoding" = "b64"
-        "owner"    = "root:root"
-        "permissions" : "0644"
-
-        "content" = base64encode("sshd: ALL\n")
-      }
-    ]
-  }
 }
 
 resource "cloudscale_network" "privnet" {
