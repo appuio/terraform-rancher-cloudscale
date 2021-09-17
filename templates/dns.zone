@@ -1,3 +1,5 @@
+; TODO: This is a placeholder
+;       May change based on RKE requirements.
 ; Cluster ${cluster_id}
 $ORIGIN ${node_name_suffix}.
 

@@ -59,7 +59,7 @@ variable "worker_flavor" {
 
 variable "worker_volume_size_gb" {
   type        = number
-  description = "Worker boot volume size in GBs"
+  description = "Worker boot volume size in GBs. TODO: Research RKE requirements for default"
   default     = 128
 }
 

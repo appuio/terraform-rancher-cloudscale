@@ -41,7 +41,7 @@ variable "image_slug" {
 
 variable "volume_size_gb" {
   type        = number
-  description = "Boot volume size in GBs"
+  description = "Boot volume size in GBs. TODO: Research RKE requirements for default"
   default     = 128
 }
 
