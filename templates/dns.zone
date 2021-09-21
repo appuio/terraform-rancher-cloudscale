@@ -1,0 +1,12 @@
+; TODO: This is a placeholder
+;       May change based on RKE requirements.
+; Cluster ${cluster_id}
+$ORIGIN ${node_name_suffix}.
+
+api       IN A     ${api_vip}
+api-int   IN A     ${internal_vip}
+*.apps    IN A     ${router_vip}
+
+%{ for i, addr in lbs ~}
+${lb_hostnames[i]} IN A     ${addr}
+%{ endfor ~}
