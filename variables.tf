@@ -3,6 +3,18 @@ variable "cluster_id" {
   description = "ID of the cluster"
 }
 
+variable "cluster_kubernetes_version" {
+  type        = string
+  description = "RKE2 K8s version for the cluster"
+  default     = "v1.21.4-rke2r2"
+}
+
+variable "cluster_cni_plugin" {
+  type        = string
+  description = "CNI plugin to use for the cluster"
+  default     = "calico"
+}
+
 variable "base_domain" {
   type        = string
   description = "Base domain of the cluster"
