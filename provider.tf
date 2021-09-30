@@ -26,5 +26,9 @@ terraform {
       source  = "igal-s/gitfile"
       version = "1.0.0"
     }
+    rancher2 = {
+      source  = "rancher/rancher2"
+      version = "1.20.1"
+    }
   }
 }
