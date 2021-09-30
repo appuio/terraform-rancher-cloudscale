@@ -11,6 +11,12 @@ module "worker" {
   volume_size_gb   = var.worker_volume_size_gb
   subnet_uuid      = cloudscale_subnet.privnet_subnet.id
   ssh_keys         = var.node_ssh_keys
+
+  additional_user_data = {
+    "runcmd" = [
+      "${local.rke2_base_command} --worker",
+    ]
+  }
 }
 
 // Additional worker groups.
@@ -30,4 +36,10 @@ module "additional_worker" {
   volume_size_gb   = each.value.volume_size_gb != null ? each.value.volume_size_gb : var.worker_volume_size_gb
   subnet_uuid      = cloudscale_subnet.privnet_subnet.id
   ssh_keys         = var.node_ssh_keys
+
+  additional_user_data = {
+    "runcmd" = [
+      "${local.rke2_base_command} --worker",
+    ]
+  }
 }

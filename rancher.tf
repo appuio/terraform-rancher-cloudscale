@@ -1,3 +1,7 @@
+locals {
+  rke2_base_command = rancher2_cluster_v2.cluster.cluster_registration_token[0].node_command
+}
+
 resource "rancher2_cluster_v2" "cluster" {
   name = var.cluster_id
 
