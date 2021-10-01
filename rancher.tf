@@ -1,5 +1,7 @@
 locals {
   rke2_base_command = rancher2_cluster_v2.cluster.cluster_registration_token[0].node_command
+
+  api_fqdn = "api.${var.cluster_id}.${var.base_domain}"
 }
 
 resource "rancher2_cluster_v2" "cluster" {
@@ -11,11 +13,14 @@ resource "rancher2_cluster_v2" "cluster" {
   rke_config {
     local_auth_endpoint {
       enabled = true
-      fqdn    = "api.${var.cluster_id}.${var.base_domain}"
+      fqdn    = local.api_fqdn
     }
-    machine_global_config = join("\n", [
-      "cni: \"${var.cluster_cni_plugin}\""
-    ])
+    machine_global_config = yamlencode({
+      cni = var.cluster_cni_plugin,
+      tls-san = [
+        local.api_fqdn
+      ],
+    })
   }
 
   lifecycle {
