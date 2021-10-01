@@ -42,11 +42,6 @@ variable "privnet_cidr" {
   description = "CIDR of the private net to use"
 }
 
-variable "bootstrap_count" {
-  type    = number
-  default = 0
-}
-
 variable "lb_count" {
   type    = number
   default = 2
