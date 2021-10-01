@@ -29,12 +29,23 @@ variable "ssh_keys" {
   type        = list(string)
   description = "SSH keys to add to LBs"
   default     = []
+
+  validation {
+    condition     = length(var.ssh_keys) > 0
+    error_message = "You must specify at least one SSH key for the LBs."
+  }
 }
 
 variable "node_ssh_keys" {
   type        = list(string)
   description = "SSH keys to add to cluster nodes"
   default     = []
+
+  validation {
+    condition     = length(var.node_ssh_keys) > 0
+    error_message = "You must specify at least one SSH key for the cluster nodes."
+  }
+
 }
 
 variable "privnet_cidr" {
