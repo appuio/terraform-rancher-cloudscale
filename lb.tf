@@ -9,6 +9,7 @@ module "lb" {
   lb_count               = var.lb_count
   control_vshn_net_token = var.control_vshn_net_token
 
+  api_backends             = module.master.ip_addresses[*]
   router_backends          = module.worker.ip_addresses[*]
   lb_cloudscale_api_secret = var.lb_cloudscale_api_secret
   hieradata_repo_user      = var.hieradata_repo_user
