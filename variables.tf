@@ -15,6 +15,12 @@ variable "cluster_cni_plugin" {
   default     = "calico"
 }
 
+variable "cluster_ingress_controller" {
+  type        = string
+  description = "ingress controller running on the cluster"
+  default     = ""
+}
+
 variable "base_domain" {
   type        = string
   description = "Base domain of the cluster"

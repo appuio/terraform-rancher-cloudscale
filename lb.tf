@@ -3,6 +3,8 @@ module "lb" {
 
   node_name_suffix       = local.node_name_suffix
   cluster_id             = var.cluster_id
+  distribution           = "rke"
+  ingress_controller     = var.cluster_ingress_controller
   region                 = var.region
   ssh_keys               = var.ssh_keys
   privnet_id             = cloudscale_network.privnet.id
