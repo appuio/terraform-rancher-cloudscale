@@ -21,6 +21,11 @@ resource "rancher2_cluster_v2" "cluster" {
         local.api_fqdn
       ],
     })
+    etcd {
+      disable_snapshots      = var.cluster_etcd_snapshots.disabled
+      snapshot_retention     = var.cluster_etcd_snapshots.retention_count
+      snapshot_schedule_cron = var.cluster_etcd_snapshots.schedule_cron
+    }
     machine_selector_config {
       config = {
         protect-kernel-defaults = false

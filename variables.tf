@@ -21,6 +21,16 @@ variable "cluster_ingress_controller" {
   default     = ""
 }
 
+variable "cluster_etcd_snapshots" {
+  type        = object({ disabled = bool, retention_count = number, schedule_cron = string })
+  description = "RKE2 etcd snapshot configuration"
+  default = {
+    disabled        = false
+    retention_count = 5
+    schedule_cron   = "0 */4 * * *"
+  }
+}
+
 variable "base_domain" {
   type        = string
   description = "Base domain of the cluster"
