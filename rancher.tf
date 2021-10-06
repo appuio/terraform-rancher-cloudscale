@@ -21,6 +21,11 @@ resource "rancher2_cluster_v2" "cluster" {
         local.api_fqdn
       ],
     })
+    machine_selector_config {
+      config = {
+        protect-kernel-defaults = false
+      }
+    }
   }
 
   lifecycle {
