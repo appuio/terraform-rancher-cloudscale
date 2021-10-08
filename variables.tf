@@ -6,7 +6,7 @@ variable "cluster_id" {
 variable "cluster_kubernetes_version" {
   type        = string
   description = "RKE2 K8s version for the cluster"
-  default     = "v1.21.4-rke2r2"
+  default     = "v1.21.4+rke2r2"
 }
 
 variable "cluster_cni_plugin" {
