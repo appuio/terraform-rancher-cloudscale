@@ -3,6 +3,34 @@ variable "cluster_id" {
   description = "ID of the cluster"
 }
 
+variable "cluster_kubernetes_version" {
+  type        = string
+  description = "RKE2 K8s version for the cluster"
+  default     = "v1.21.4+rke2r2"
+}
+
+variable "cluster_cni_plugin" {
+  type        = string
+  description = "CNI plugin to use for the cluster"
+  default     = "calico"
+}
+
+variable "cluster_ingress_controller" {
+  type        = string
+  description = "ingress controller running on the cluster"
+  default     = ""
+}
+
+variable "cluster_etcd_snapshots" {
+  type        = object({ disabled = bool, retention_count = number, schedule_cron = string })
+  description = "RKE2 etcd snapshot configuration"
+  default = {
+    disabled        = false
+    retention_count = 5
+    schedule_cron   = "0 */4 * * *"
+  }
+}
+
 variable "base_domain" {
   type        = string
   description = "Base domain of the cluster"
@@ -17,22 +45,28 @@ variable "ssh_keys" {
   type        = list(string)
   description = "SSH keys to add to LBs"
   default     = []
+
+  validation {
+    condition     = length(var.ssh_keys) > 0
+    error_message = "You must specify at least one SSH key for the LBs."
+  }
 }
 
 variable "node_ssh_keys" {
   type        = list(string)
   description = "SSH keys to add to cluster nodes"
   default     = []
+
+  validation {
+    condition     = length(var.node_ssh_keys) > 0
+    error_message = "You must specify at least one SSH key for the cluster nodes."
+  }
+
 }
 
 variable "privnet_cidr" {
   default     = "172.18.200.0/24"
   description = "CIDR of the private net to use"
-}
-
-variable "bootstrap_count" {
-  type    = number
-  default = 0
 }
 
 variable "lb_count" {

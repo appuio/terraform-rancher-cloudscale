@@ -10,4 +10,10 @@ module "master" {
   flavor_slug      = "plus-16"
   subnet_uuid      = cloudscale_subnet.privnet_subnet.id
   ssh_keys         = var.node_ssh_keys
+
+  additional_user_data = {
+    "runcmd" = [
+      "${local.rke2_base_command} --etcd --controlplane",
+    ]
+  }
 }
