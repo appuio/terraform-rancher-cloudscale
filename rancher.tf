@@ -1,5 +1,5 @@
 locals {
-  rke2_base_command = rancher2_cluster_v2.cluster.cluster_registration_token[0].node_command
+  rke2_base_command = "${rancher2_cluster_v2.cluster.cluster_registration_token[0].node_command} ${local.rke2_additional_node_params}"
 
   api_fqdn = "api.${var.cluster_id}.${var.base_domain}"
 }
