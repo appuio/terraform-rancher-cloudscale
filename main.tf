@@ -1,5 +1,7 @@
 locals {
   node_name_suffix = "${var.cluster_id}.${var.base_domain}"
+
+  rke2_additional_node_params = "--label plan.upgrade.cattle.io/focal="
 }
 
 resource "cloudscale_network" "privnet" {
