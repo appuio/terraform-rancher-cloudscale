@@ -14,7 +14,7 @@ module "worker" {
 
   additional_user_data = {
     "runcmd" = [
-      "${local.rke2_base_command} --worker",
+      "${local.rke2_base_command} ${join(" ", formatlist("--label '%s'", local.rke2_worker_node_additional_labels))} --worker",
     ]
   }
 }
@@ -39,7 +39,7 @@ module "additional_worker" {
 
   additional_user_data = {
     "runcmd" = [
-      "${local.rke2_base_command} --worker",
+      "${local.rke2_base_command} ${join(" ", formatlist("--label '%s'", local.rke2_worker_node_additional_labels))} --worker",
     ]
   }
 }

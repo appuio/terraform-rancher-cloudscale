@@ -13,7 +13,7 @@ module "master" {
 
   additional_user_data = {
     "runcmd" = [
-      "${local.rke2_base_command} --etcd --controlplane",
+      "${local.rke2_base_command} ${join(" ", formatlist("--label '%s'", local.rke2_master_node_additional_labels))} --etcd --controlplane",
     ]
   }
 }
