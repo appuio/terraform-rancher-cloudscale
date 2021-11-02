@@ -132,3 +132,9 @@ variable "hieradata_repo_user" {
 variable "control_vshn_net_token" {
   type = string
 }
+
+variable "team" {
+  type        = string
+  description = "Team to assign the load balancers to in Icinga. All lower case."
+  default     = ""
+}

@@ -1,5 +1,5 @@
 module "lb" {
-  source = "git::https://github.com/appuio/terraform-modules.git//modules/vshn-lbaas-cloudscale?ref=v1.0.1"
+  source = "git::https://github.com/appuio/terraform-modules.git//modules/vshn-lbaas-cloudscale?ref=v2.0.0"
 
   node_name_suffix       = local.node_name_suffix
   cluster_id             = var.cluster_id
@@ -10,6 +10,7 @@ module "lb" {
   privnet_id             = cloudscale_network.privnet.id
   lb_count               = var.lb_count
   control_vshn_net_token = var.control_vshn_net_token
+  team                   = var.team
 
   api_backends             = module.master.ip_addresses[*]
   router_backends          = module.worker.ip_addresses[*]
