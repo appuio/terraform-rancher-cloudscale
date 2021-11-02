@@ -136,5 +136,4 @@ variable "control_vshn_net_token" {
 variable "team" {
   type        = string
   description = "Team to assign the load balancers to in Icinga. All lower case."
-  default     = ""
 }
