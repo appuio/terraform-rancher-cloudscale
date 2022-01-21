@@ -31,6 +31,12 @@ variable "cluster_etcd_snapshots" {
   }
 }
 
+variable "enable_network_policy" {
+  type        = bool
+  default     = false
+  description = "Enable project network isolation"
+}
+
 variable "base_domain" {
   type        = string
   description = "Base domain of the cluster"

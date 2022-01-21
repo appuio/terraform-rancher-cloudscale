@@ -8,7 +8,7 @@ resource "rancher2_cluster_v2" "cluster" {
   name = var.cluster_id
 
   kubernetes_version    = var.cluster_kubernetes_version
-  enable_network_policy = true
+  enable_network_policy = var.enable_network_policy
 
   rke_config {
     local_auth_endpoint {
