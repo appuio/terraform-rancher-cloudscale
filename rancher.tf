@@ -11,10 +11,6 @@ resource "rancher2_cluster_v2" "cluster" {
   enable_network_policy = var.enable_network_policy
 
   rke_config {
-    local_auth_endpoint {
-      enabled = true
-      fqdn    = local.api_fqdn
-    }
     machine_global_config = yamlencode({
       cni = var.cluster_cni_plugin,
       tls-san = [
@@ -31,6 +27,11 @@ resource "rancher2_cluster_v2" "cluster" {
         protect-kernel-defaults = false
       }
     }
+  }
+
+  local_auth_endpoint {
+    enabled = true
+    fqdn    = local.api_fqdn
   }
 
   lifecycle {
