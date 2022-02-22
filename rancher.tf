@@ -11,6 +11,7 @@ resource "rancher2_cluster_v2" "cluster" {
   enable_network_policy = var.enable_network_policy
 
   rke_config {
+    additional_manifest = var.additional_manifest
     local_auth_endpoint {
       enabled = true
       fqdn    = local.api_fqdn

@@ -9,6 +9,11 @@ variable "cluster_kubernetes_version" {
   default     = "v1.21.4+rke2r2"
 }
 
+variable "additional_manifest" {
+  type        = string
+  description = "Additional manifest to be applied to the cluster"
+}
+
 variable "cluster_cni_plugin" {
   type        = string
   description = "CNI plugin to use for the cluster"
