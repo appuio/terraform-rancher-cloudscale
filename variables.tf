@@ -9,9 +9,10 @@ variable "cluster_kubernetes_version" {
   default     = "v1.21.4+rke2r2"
 }
 
-variable "additional_manifest" {
+variable "cluster_additional_manifest" {
   type        = string
-  description = "Additional manifest to be applied to the cluster"
+  description = "Additional manifest to be applied to the cluster. The module doesn't validate the contents of this variable."
+  default     = ""
 }
 
 variable "cluster_cni_plugin" {

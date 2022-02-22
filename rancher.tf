@@ -11,7 +11,7 @@ resource "rancher2_cluster_v2" "cluster" {
   enable_network_policy = var.enable_network_policy
 
   rke_config {
-    additional_manifest = var.additional_manifest
+    additional_manifest = var.cluster_additional_manifest
     machine_global_config = yamlencode({
       cni = var.cluster_cni_plugin,
       tls-san = [
