@@ -53,4 +53,7 @@ resource "rancher2_cluster_v2" "cluster" {
       resource_version
     ]
   }
+  depends_on = [
+    rancher2_cloud_credential.s3_etcd_snapshot
+  ]
 }
