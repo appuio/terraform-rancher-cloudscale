@@ -149,3 +149,24 @@ variable "team" {
   type        = string
   description = "Team to assign the load balancers to in Icinga. All lower case."
 }
+
+variable "etcd_backup_access_key" {
+  type        = string
+  description = "Access key for S3 service"
+}
+
+variable "etcd_backup_secret_key" {
+  type        = string
+  description = "Secret key for S3 service"
+}
+
+variable "etcd_backup_bucket_name" {
+  type        = string
+  description = "Bucket name for S3 service"
+  default     = "etcd-snapshots"
+}
+
+variable "etcd_backup_s3_endpoint" {
+  type        = string
+  description = "Endpoint for S3 service"
+}
