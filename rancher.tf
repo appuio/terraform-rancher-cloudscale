@@ -4,6 +4,14 @@ locals {
   api_fqdn = "api.${var.cluster_id}.${var.base_domain}"
 }
 
+resource "rancher2_cloud_credential" "s3_etcd_snapshot" {
+  name = "s3_etcd_snapshot"
+  s3_credential_config {
+    access_key = var.etcd_backup_access_key
+    secret_key = var.etcd_backup_secret_key
+  }
+}
+
 resource "rancher2_cluster_v2" "cluster" {
   name = var.cluster_id
 
@@ -22,6 +30,11 @@ resource "rancher2_cluster_v2" "cluster" {
       disable_snapshots      = var.cluster_etcd_snapshots.disabled
       snapshot_retention     = var.cluster_etcd_snapshots.retention_count
       snapshot_schedule_cron = var.cluster_etcd_snapshots.schedule_cron
+      s3_config {
+        bucket                = var.etcd_backup_bucket_name
+        endpoint              = var.etcd_backup_s3_endpoint
+        cloud_credential_name = "s3_etcd_snapshot"
+      }
     }
     machine_selector_config {
       config = {
