@@ -170,3 +170,8 @@ variable "etcd_backup_s3_endpoint" {
   type        = string
   description = "Endpoint for S3 service"
 }
+
+variable "kubelet_arg" {
+  type        = list(string)
+  description = "Arguments to pass to kubelet"
+}
