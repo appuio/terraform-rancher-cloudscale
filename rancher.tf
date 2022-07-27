@@ -25,6 +25,7 @@ resource "rancher2_cluster_v2" "cluster" {
       tls-san = [
         local.api_fqdn
       ],
+      kubelet-arg = var.kubelet_arg,
     })
     etcd {
       disable_snapshots      = var.cluster_etcd_snapshots.disabled
