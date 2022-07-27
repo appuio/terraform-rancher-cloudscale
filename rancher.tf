@@ -34,7 +34,7 @@ resource "rancher2_cluster_v2" "cluster" {
       s3_config {
         bucket                = var.etcd_backup_bucket_name
         endpoint              = var.etcd_backup_s3_endpoint
-        cloud_credential_name = "s3_etcd_snapshot"
+        cloud_credential_name = rancher2_cloud_credential.s3_etcd_snapshot.id
       }
     }
     machine_selector_config {
