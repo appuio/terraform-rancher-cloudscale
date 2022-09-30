@@ -1,5 +1,5 @@
 module "lb" {
-  source = "git::https://github.com/appuio/terraform-modules.git//modules/vshn-lbaas-cloudscale?ref=v2.7.0"
+  source = "git::https://github.com/appuio/terraform-modules.git//modules/vshn-lbaas-cloudscale?ref=v3.0.0"
 
   node_name_suffix       = local.node_name_suffix
   cluster_id             = var.cluster_id
