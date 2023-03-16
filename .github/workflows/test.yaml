@@ -11,7 +11,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Extract Terraform version from constraints in module
         run: echo TF_VERSION=$(grep "^[[:space:]]\+required_version = \"" provider.tf | cut -d= -f2- | tr -d ' "') >> $GITHUB_ENV
-      - uses: hashicorp/setup-terraform@v1
+      - uses: hashicorp/setup-terraform@v2
         with:
           terraform_version: ${{ env.TF_VERSION }}
       - run: terraform fmt -check -recursive
