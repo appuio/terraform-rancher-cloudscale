@@ -8,7 +8,7 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Extract Terraform version from constraints in module
         run: echo TF_VERSION=$(grep "^[[:space:]]\+required_version = \"" provider.tf | cut -d= -f2- | tr -d ' "') >> $GITHUB_ENV
       - uses: hashicorp/setup-terraform@v1
